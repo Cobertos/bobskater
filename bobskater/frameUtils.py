@@ -4,8 +4,7 @@ Utility classes for tracking identifiers in Python scopes
 
 import builtins #Do not use __builtins__, it's different in different implementations (like IPython vs CPython)
 import ast
-
-logLevel = 0
+import logging
 
 #TODO: After coming back to this a second time, the names aren't really sticking,
 #Consider the name changes
@@ -36,9 +35,6 @@ class Frame:
         """Adds the given frame as a child of this frame"""
         assert isinstance(frame, Frame)
         assert frame != self
-        if logLevel > 0:
-            print("[FrameTrack][+Frame]: " + str(frame.source.__class__.__name__) + " \"" +
-                (frame.source.name if hasattr(frame.source, "name") else "") + "\"")
 
         self.children.append(frame)
         frame.parent = self
@@ -56,10 +52,6 @@ class Frame:
 
         self.ids[frameEntry.id] = frameEntry
         frameEntry.parent = self
-
-        if logLevel > 0:
-            print("[FrameTrack][+Entry]: " + frameEntry.source.__class__.__name__ + " \"" + frameEntry.id +
-                "\" => \"" + str(frameEntry.value) + "\"")
 
     def getStack(self):
         """Returns a stack from the root frame to this current frame"""
@@ -90,7 +82,7 @@ class Frame:
 
         #This happens if the identifier was not seen in the given scope stack.
         #Most likely passing something erroneously in
-        print("WARN: Queried identifier \"" + frameEntryId + "\" was not been seen at the given scope stack")
+        logging.getLogger(self.__class__.__name__).error("Queried identifier \"" + frameEntryId + "\" was not been seen at the given scope stack")
         return None
 
     def findEntryAtStack(self, nodeStack, frameEntryId):
