@@ -6,7 +6,6 @@ Doesn't support any sort of annotations (skips them, should be okay for now?)
 Hacky patch of comprehensions (see top, reverses for one specific thing so the _fields prints out the right way due to)
 Comprehesions do not push a stack and basically use Python 2 behavior where their identifiers leak
 Eval, strings, and other oddities are unconsidered for identifiers. Attributes are unconsidered too
-kwargs need to NOT be mangled (as they are referenced at the call site)
 """
 import keyword
 import sys
@@ -14,12 +13,12 @@ import ast
 import string
 import unicodedata
 import itertools
+import logging
 from collections import defaultdict, namedtuple
 import astunparse
 
 from .frameUtils import Frame, FrameEntry, getIdsFromNode, setIdsOnNode
 
-logLevel = 1
 
 def iter_fields_patch(node):
     """
@@ -89,6 +88,7 @@ class FrameTrackingNodeVisitor(ast.NodeVisitor):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+        self._logger = logging.getLogger(self.__class__.__name__)
 
         #The root frame tracking identifiers and the current frame
         #that we're at in the ast walking process
@@ -126,24 +126,21 @@ class FrameTrackingNodeVisitor(ast.NodeVisitor):
                 #do what python does and warn but leave it as local
                 #This is Python 3.5 behavior so this might need to be changed if ever a problem
                 if self._currentFrame.getScopedEntry(strId) != frame:
-                    print("WARN: Global/nonlocal found when variable already in local scope")
+                    self._logger.warning("Global/nonlocal found when variable already in local scope")
                 else:
-                    if logLevel > 0:
-                        print("[FrameTrack][+Entry]: " + str(node.__class__.__name__) + " \"" + strId + "\"")
+                    self._logger.debug("[+Entry]: " + str(node.__class__.__name__) + " \"" + strId + "\"")
                     frame.addEntry(FrameEntry(id=strId, source=node))
         #TODO: Annotations (for everything x:)
         #Handle Name (which handles anything that doesn't use raw strings)
         elif isinstance(node, ast.Name):
             if isinstance(node.ctx, ast.Load):
-                if logLevel > 0:
-                    print("[FrameTrack][+Entry]: " + str(node.__class__.__name__) + " \"" + node.id + "\"")
+                self._logger.debug("[+Entry]: " + str(node.__class__.__name__) + " \"" + node.id + "\"")
                 self._currentFrame.addEntry(
                     FrameEntry(id=node.id, source=node, ctx=node.ctx))
             #Store
             #Or Param (Python 2 ast.arg Name node ctx, instead of raw string)
             elif isinstance(node.ctx, (ast.Store,ast.Param)):
-                if logLevel > 0:
-                    print("[FrameTrack][+Entry]: " + str(node.__class__.__name__) + " \"" + node.id + "\"")
+                self._logger.debug("[+Entry]: " + str(node.__class__.__name__) + " \"" + node.id + "\"")
                 self._currentFrame.addEntry(
                     FrameEntry(id=node.id, source=node, ctx=ast.Store()))
             #Delete
@@ -153,8 +150,7 @@ class FrameTrackingNodeVisitor(ast.NodeVisitor):
         else:
             ids = getIdsFromNode(node)
             for strId in ids:
-                if logLevel > 0:
-                    print("[FrameTrack][+Entry]: " + str(node.__class__.__name__) + " \"" + strId + "\"")
+                self._logger.debug("[+Entry]: " + str(node.__class__.__name__) + " \"" + strId + "\"")
                 self._currentFrame.addEntry(
                     FrameEntry(id=strId, source=node))
 
@@ -163,8 +159,7 @@ class FrameTrackingNodeVisitor(ast.NodeVisitor):
             self._currentFrame.addFrame(frame)
             self._currentFrame = frame
 
-            if logLevel > 0:
-                print("[FrameTrack][+Frame]: " + str(node.__class__.__name__) + " \"" +
+            self._logger.debug("[+Frame]: " + str(node.__class__.__name__) + " \"" +
                     (node.name if hasattr(node, "name") else "") + "\"")
 
     def _handleLeaveNode(self, node):
@@ -173,8 +168,7 @@ class FrameTrackingNodeVisitor(ast.NodeVisitor):
         related to moving it off of the stack
         """
         if Frame.nodeCreatesFrame(node):
-            if logLevel > 0:
-                print("[FrameTrack][-Frame]")
+            self._logger.debug("[-Frame]")
             self._currentFrame = self._currentFrame.parent
 
     def generic_visit(self, node):
@@ -191,6 +185,7 @@ class ObfuscationTransformer(ast.NodeTransformer):
     NOTE: Comments won't be in the AST anyway, so no worries
     """
     def __init__(self, rootFrame, *args, **kwargs):
+        self._logger = logging.getLogger(self.__class__.__name__)
         self._rootFrame = rootFrame
         self._nodeStack = []
         self._debugMsg = None
@@ -245,7 +240,7 @@ class ObfuscationTransformer(ast.NodeTransformer):
             argumentsNode = nodeStack[-1]
             #Slice the number of default nodes from the end
             kwStrs = list(map(lambda n: n.arg, argumentsNode.args[-len(argumentsNode.defaults):]))
-            print(kwStrs, strId, strId in kwStrs)
+            self._logger.debug("kwarg debug", kwStrs, strId, strId in kwStrs)
             if strId in kwStrs:
                 frameEntry.value = False
                 return False
@@ -270,7 +265,7 @@ class ObfuscationTransformer(ast.NodeTransformer):
 
         #Mangle names
         ids = getIdsFromNode(node)
-        if logLevel > 0:
+        if self._logger.isEnabledFor(logging.DEBUG):
             oldIds = ids[:]
         for idx, strId in enumerate(ids):
             mangleTo = self.getMangledName(self._nodeStack, strId)
@@ -278,8 +273,8 @@ class ObfuscationTransformer(ast.NodeTransformer):
                 continue
             ids[idx] = mangleTo
         setIdsOnNode(node, ids)
-        if ids and logLevel > 0:
-            print(node.__class__.__name__ + 
+        if ids and self._logger.isEnabledFor(logging.DEBUG):
+            self._logger.debug(node.__class__.__name__ + 
                 ": " + (str(oldIds) if oldIds else None) + 
                 " => " + (str(ids) if ids else None) + " [" +
                 self._debugMsg + "]")
@@ -298,8 +293,7 @@ def obfuscateString(s):
     #Walk the AST once total to get all the scope information
     ftnv = FrameTrackingNodeVisitor()
     ftnv.visit(sAst)
-    if logLevel > 0:
-        print(ftnv.getRootFrame())
+    logging.getLogger(__name__).debug(ftnv.getRootFrame())
     #Walk the AST a second time to obfuscate identifiers with
     #queriable scope info
     sAst = ObfuscationTransformer(ftnv.getRootFrame()).visit(sAst)
