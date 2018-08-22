@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name='bobskater',
-    version='0.0.1',
+    version='0.1.0',
     description='AST based Obfuscator for Python',
     long_description=open('README.md', 'r').read(),
     long_description_content_type="text/markdown",
