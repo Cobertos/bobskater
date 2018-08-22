@@ -122,10 +122,10 @@ class FrameTrackingNodeVisitor(ast.NodeVisitor):
                     if frame is None:
                         raise NotImplementedError("TODO: No scope for nonlocal declaration, what do?")
 
-                #If in the current scope is already defined (the assigned and then used the statement)
+                #If the currentFrame contains this identifier (they assigned and then used the identifier)
                 #do what python does and warn but leave it as local
                 #This is Python 3.5 behavior so this might need to be changed if ever a problem
-                if self._currentFrame.getScopedEntry(strId) != frame:
+                if self._currentFrame.getScopedEntry(strId) == frame:
                     self._logger.warning("Global/nonlocal found when variable already in local scope")
                 else:
                     self._logger.debug("[+Entry]: " + str(node.__class__.__name__) + " \"" + strId + "\"")
