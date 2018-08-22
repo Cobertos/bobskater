@@ -29,6 +29,4 @@ output = obfuscateString(open('myfile.py', 'r').read())
 
 ### Developing
 
-The library is broken up into two parts. The first is `FrameTrackingNodeVisitor` which is an `ast.NodeVisitor` that is used to read an entire file and track all identifier usages and in which scopes they were defined, internally using `FrameTrackingNodeVisitor.Frame` and `FrameTrackingNodeVisitor.FrameEntry`. Public methods then allow querying of this internal representation (TODO: maybe the representation shouldn't be internal to the walker but should output it).
-
-The second part is the `ReleaseObfuscationTransformer` which actually transforms the given AST into the obfuscated AST. It internall creates a `FrameTrackingNodeVisitor` to then query information from.
+See CONTRIBUTING.MD

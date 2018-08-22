@@ -1,0 +1,563 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"obf",
+				"obfuscateFile"
+			],
+			[
+				"template",
+				"templateReplace"
+			],
+			[
+				"assert",
+				"assertEqual"
+			],
+			[
+				"templa",
+				"templateReplace"
+			],
+			[
+				"_register",
+				"_registeredModules"
+			],
+			[
+				"_regi",
+				"_registeredModules"
+			],
+			[
+				"_r",
+				"_registeredModules"
+			],
+			[
+				"_BLManaged",
+				"_BLManagedMeta"
+			],
+			[
+				"_BLM",
+				"_BLManagedMeta"
+			],
+			[
+				"bl_un",
+				"bl_unregister"
+			],
+			[
+				"bl_",
+				"bl_register"
+			],
+			[
+				"_state",
+				"_stateful"
+			],
+			[
+				"view",
+				"view3d_utils"
+			],
+			[
+				"collect",
+				"collectInstance"
+			],
+			[
+				"manual",
+				"manualCollection"
+			],
+			[
+				"BLMana",
+				"BLManagedClassDecorated"
+			],
+			[
+				"BLManag",
+				"BLManagedClass"
+			],
+			[
+				"_cls",
+				"_clsManagedClass"
+			],
+			[
+				"global",
+				"globalManagedObjects"
+			],
+			[
+				"ob",
+				"obfuscateString"
+			],
+			[
+				"module",
+				"moduleAbsPath"
+			],
+			[
+				"fil",
+				"fileName"
+			],
+			[
+				"testModul",
+				"testModuleMap"
+			],
+			[
+				"testMo",
+				"testModuleMap"
+			],
+			[
+				"vect",
+				"vectorComponentMul"
+			],
+			[
+				"Primiti",
+				"PrimitiveManipulator"
+			],
+			[
+				"validI",
+				"validIdentifierNameIterator"
+			],
+			[
+				"FrameTrac",
+				"FrameTrackingNodeVisitor"
+			],
+			[
+				"_get",
+				"_getRecreatedFrameStack"
+			],
+			[
+				"iter_",
+				"iter_fields_patch"
+			],
+			[
+				"old",
+				"old_iter_fields"
+			],
+			[
+				"Excep",
+				"ExceptHandler"
+			],
+			[
+				"valu",
+				"valueForId"
+			],
+			[
+				"Class",
+				"ClassDef"
+			],
+			[
+				"Fun",
+				"FunctionDef"
+			],
+			[
+				"com",
+				"combinations_with_replacement"
+			],
+			[
+				"selectionGraph",
+				"selectionGraphicsDict"
+			],
+			[
+				"testModule",
+				"testModulePathBase"
+			],
+			[
+				"create",
+				"createTestModuleFile"
+			],
+			[
+				"primi",
+				"primitive_cube_add"
+			],
+			[
+				"dimen",
+				"dimensionToReduce"
+			],
+			[
+				"vectorCom",
+				"vectorComponentDiv"
+			],
+			[
+				"mouseH",
+				"mouseHit2DWorld"
+			],
+			[
+				"PRefab",
+				"Prefaber_clientGUIPrefab"
+			],
+			[
+				"In",
+				"InvalidOperationException"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 490.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"package con",
+				"Package Control: List Packages"
+			],
+			[
+				"package",
+				"Package Control: List Packages"
+			],
+			[
+				"sublimelinter",
+				"Preferences: SublimeLinter Settings"
+			],
+			[
+				"lint",
+				"SublimeLinter: Lint This View"
+			],
+			[
+				"next",
+				"SublimeLinter: Next Error"
+			],
+			[
+				"lint thi",
+				"SublimeLinter: Lint This View"
+			],
+			[
+				"lint ",
+				"SublimeLinter: Toggle Linter"
+			],
+			[
+				"lint this",
+				"SublimeLinter: Lint This View"
+			],
+			[
+				"enable lit",
+				"SublimeLinter: Disable Linter"
+			],
+			[
+				"show",
+				"SublimeLinter: Show All Errors"
+			],
+			[
+				"toggle lint",
+				"SublimeLinter: Toggle Linter"
+			],
+			[
+				"sublime",
+				"SublimeLinter: Toggle Linter"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"instlal",
+				"Package Control: Install Package"
+			],
+			[
+				"package control",
+				"Package Control: Install Package"
+			],
+			[
+				"packa",
+				"Package Control: List Packages"
+			]
+		],
+		"width": 565.0
+	},
+	"console":
+	{
+		"height": 616.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = 'df21e130d211cfc94d9b0905775a7c0f' + '1e3d39e33b79698005270310898eea76'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/C/Users/PeterF/Dropbox/Dev/bobskater"
+	],
+	"file_history":
+	[
+		"/C/Users/PeterF/Dropbox/Dev/RLD_Toolkit/rld_toolkit/interop/BLRegistrationListener.py",
+		"/C/Users/PeterF/Dropbox/Dev/RLD_Toolkit/tests/moduleCreator.py",
+		"/C/Users/PeterF/Dropbox/Dev/RLD_Toolkit/dist/__init__.py",
+		"/C/Users/PeterF/Dropbox/Dev/RLD_Toolkit/rld_toolkit/ops/PrimitiveManipulator.py",
+		"/C/Users/PeterF/Dropbox/Dev/RLD_Toolkit/rld_toolkit/ops/GridSize.py",
+		"/C/Users/PeterF/Dropbox/Dev/RLD_Toolkit/rld_toolkit/panels/View3DToolsPanel.py",
+		"/C/Users/PeterF/Dropbox/Dev/RLD_Toolkit/__init__.py",
+		"/C/Users/PeterF/Dropbox/Dev/RLD_Toolkit/rld_toolkit/interop/BLImportUtils.py",
+		"/C/Users/PeterF/Dropbox/Dev/RLD_Toolkit/rld_toolkit/interop/SingletonModalSubOperator.py",
+		"/C/Users/PeterF/Dropbox/Dev/RLD_Toolkit/rld_toolkit/interop/BLManagedClass.py",
+		"/C/Users/PeterF/Dropbox/Dev/RLD_Toolkit/tests/conftest.py",
+		"/C/Users/PeterF/Dropbox/Dev/RLD_Toolkit/dist/rld_toolkit/Selection.py",
+		"/C/Users/PeterF/Dropbox/Dev/RLD_Toolkit/info.py",
+		"/C/Users/PeterF/Dropbox/Dev/RLD_Toolkit/tests/mocks.py",
+		"/C/Users/PeterF/Dropbox/Dev/RLD_Toolkit/tests/test_utils.py",
+		"/C/Users/PeterF/Dropbox/Dev/RLD_Toolkit/tests/test_Selection.py",
+		"/C/Users/PeterF/Dropbox/Dev/RLD_Toolkit/rld_toolkit/Selection.py",
+		"/C/Users/PeterF/Dropbox/Dev/RLD_Toolkit/rld_toolkit/interop/SingletonPropertyGroup.py",
+		"/C/Users/PeterF/Dropbox/Dev/RLD_Toolkit/rld_toolkit/utils.py",
+		"/C/Users/PeterF/Dropbox/Dev/RLD_Toolkit/tests/test_build.py",
+		"/C/Users/PeterF/Dropbox/Dev/RLD_Toolkit/build/utils.py",
+		"/C/Users/PeterF/Dropbox/Dev/RLD_Toolkit/obfuscate.py",
+		"/C/Users/PeterF/Dropbox/Dev/RLD_Toolkit/dist/rld_toolkit/utils.py",
+		"/C/Users/PeterF/Dropbox/Dev/Unity Projects/BBR/UnityProject/Assets/Scripts/BBR.cs",
+		"/C/Users/PeterF/Dropbox/Dev/Unity Projects/BBR/UnityProject/Assets/Scripts/Anchor.cs",
+		"/C/Users/PeterF/Dropbox/Dev/RLD_Toolkit/package.py",
+		"/C/Users/PeterF/Dropbox/Dev/RLD_Toolkit/requirements.txt",
+		"/C/Users/PeterF/Dropbox/Dev/RLD_Toolkit/_shield.scss",
+		"/C/Workspace/PersonalBlog/dist/assets/css/profileMain.css",
+		"/C/Workspace/PersonalBlog/dist/default.hbs",
+		"/C/Workspace/PersonalBlog/tools/dlImages.js",
+		"/C/Workspace/PersonalBlog/MigratorConfig.js",
+		"/C/Users/PeterF/Downloads/cobertospixelblog (1)/partials/postPartial.hbs",
+		"/C/Workspace/PersonalBlog/node_modules/ghost/MigratorConfig.js",
+		"/C/Program Files/Blender Foundation/Blender/2.76/scripts/addons/rld_toolkit_prod/__init__.py",
+		"/C/Program Files/Blender Foundation/Blender/2.76/scripts/addons/rld_toolkit_prod/info.py",
+		"/C/Users/PeterF/Dropbox/Dev/RLD_Toolkit/tests/test_BLManagedClass.py",
+		"/C/Users/PeterF/Dropbox/Dev/RLD_Toolkit/tests/test_BLRegistrationListener.py",
+		"/C/Users/PeterF/Dropbox/Dev/RLD_Toolkit/tests/test_BLImportUtils.py",
+		"/C/Users/PeterF/Dropbox/Dev/RLD_Toolkit/rld_toolkit/interop/SingletonModalOperator.py",
+		"/C/Users/PeterF/Dropbox/Dev/RLD_Toolkit/rld_toolkit/ops/TextureApplicator.py",
+		"/C/Users/PeterF/Dropbox/Dev/RLD_Toolkit/rld_toolkit/SelectionGraphicsForRegionMapping.py",
+		"/C/Users/PeterF/Dropbox/Dev/RLD_Toolkit/.coverage",
+		"/C/Users/PeterF/Dropbox/Dev/RLD_Toolkit/rld_toolkit/BLImportUtils.py",
+		"/C/Users/PeterF/Dropbox/Dev/RLD_Toolkit/rld_toolkit/ops/BaseRLDOperator.py",
+		"/C/Users/PeterF/Dropbox/Dev/RLD_Toolkit/rld_toolkit/ops/BaseRLDSubOperator.py",
+		"/C/Users/PeterF/Dropbox/Dev/RLD_Toolkit/rld_toolkit/ops/SingletonPropertyGroup.py",
+		"/C/Users/PeterF/Dropbox/Dev/RLD_Toolkit/rld_toolkit/interop/__init__.py",
+		"/C/Users/PeterF/Dropbox/Dev/RLD_Toolkit/asd.py",
+		"/C/Program Files/Blender Foundation/Blender/2.76/scripts/addons/mesh_looptools.py",
+		"/C/Program Files/Blender Foundation/Blender/2.76/scripts/addons/mesh_custom_normals_tools.py",
+		"/C/Users/PeterF/Dropbox/Dev/RLD_Toolkit/.gitignore",
+		"/C/Users/PeterF/Dropbox/Dev/RLD_Toolkit/rld_toolkit/BLManagedClass.py",
+		"/C/Program Files/Blender Foundation/Blender/2.76/scripts/addons/mesh_bsurfaces.py",
+		"/C/Program Files/Blender Foundation/Blender/2.76/scripts/modules/console_shell.py",
+		"/C/Program Files/Blender Foundation/Blender/2.76/scripts/modules/console_python.py",
+		"/C/Users/PeterF/Dropbox/Dev/RLD_Toolkit/dist/rld_toolkit/ops/PrimitiveManipulator.py",
+		"/C/Users/PeterF/Dropbox/Dev/RLD_Toolkit/tests/test_SelectionGraphicsForRegion.py",
+		"/C/Users/PeterF/Dropbox/Dev/RLD_Toolkit/BLENDER_PYTHON_TIPS.md",
+		"/C/Users/PeterF/Dropbox/Dev/RLD_Toolkit/dist/out.py",
+		"/C/Users/PeterF/Dropbox/Dev/RLD_Toolkit/dist/rld_toolkit/BLImportUtils.py",
+		"/C/Users/PeterF/Dropbox/Dev/RLD_Toolkit/README.md",
+		"/C/Users/PeterF/Dropbox/Dev/RLD_Toolkit/rld_panel.py",
+		"/C/Program Files/Blender Foundation/Blender/2.76/scripts/addons/tesst/a.py",
+		"/C/Program Files/Blender Foundation/Blender/2.76/scripts/addons/tesst/__init__.py",
+		"/C/Python35/Lib/site-packages/_pytest/config.py",
+		"/C/Users/PeterF/Dropbox/Dev/RLD_Toolkit/.coveragerc",
+		"/C/Users/PeterF/Dropbox/Dev/RLD_Toolkit/test.bat",
+		"/C/Python35/Lib/site-packages/_pytest/_code/code.py",
+		"/C/Users/PeterF/Dropbox/Dev/RLD_Toolkit/obfuscate (PeterF-SP's conflicted copy 2018-02-12).py",
+		"/C/Users/PeterF/Dropbox/Dev/Websites/FileGrabbers/packer.js",
+		"/C/Users/PeterF/Dropbox/Dev/Websites/FileGrabbers/fileGrabber.html",
+		"/C/Users/PeterF/Dropbox/Dev/RLD_Toolkit/dist/test.py",
+		"/C/Users/PeterF/Dropbox/Dev/RLD_Toolkit/rld_textureApplicator.py",
+		"/C/Users/PeterF/Dropbox/Media/Pictures/CreativeEndeavors/Textures/TextureMaster/tm.pl",
+		"/C/Users/PeterF/.aws/credentials",
+		"/C/Users/PeterF/Dropbox/Dev/RLD_Toolkit/dist/rld_panel.py",
+		"/C/Users/PeterF/Dropbox/Dev/RLD_Toolkit/utils.cpython-34.pyc",
+		"/C/Users/PeterF/Dropbox/Dev/RLD_Toolkit/BLENDER_MARKET.md",
+		"/C/Users/PeterF/Dropbox/Dev/RLD_Toolkit/tests/testModule/a.py",
+		"/C/Users/PeterF/Dropbox/Dev/RLD_Toolkit/tests/__init__.py",
+		"/C/Users/PeterF/Dropbox/Dev/RLD_Toolkit/BLImportUtils.py",
+		"/C/Users/PeterF/Dropbox/Dev/RLD_Toolkit/tests/testModule/test.py",
+		"/C/Users/PeterF/Dropbox/Dev/Websites/PersonalPortfolio/src/hbs/post.hbs",
+		"/C/Users/PeterF/Dropbox/Dev/Websites/PersonalPortfolio/src/hbs/custom-tag-list.hbs",
+		"/C/Program Files/Blender Foundation/Blender/2.76/scripts/addons/tesst/blenderMousePrint.py",
+		"/C/Users/PeterF/Dropbox/Dev/Other/blenderHierarchyPrint.py",
+		"/C/Users/PeterF/Dropbox/Dev/RLD_Toolkit/rld_toolkit/__init__.py",
+		"/C/Users/PeterF/Dropbox/Dev/Websites/WebForever/background.js",
+		"/C/Users/PeterF/Dropbox/Dev/Websites/PersonalPortfolio/raw_assets/content/coburn.space-ghost.json",
+		"/C/Users/PeterF/Dropbox/Dev/RLD_Toolkit/Pipfile",
+		"/C/Users/PeterF/Dropbox/Dev/RLD_Toolkit/Pipfile.lock",
+		"/C/Users/PeterF/Dropbox/Dev/RLD_Toolkit/rld.sublime-project",
+		"/C/Users/PeterF/Dropbox/Dev/RLD_Toolkit/rld.sublime-workspace",
+		"/C/Users/PeterF/AppData/Roaming/Blender Foundation/Blender/2.76/scripts/addons/RLD_Toolkit/__init__.py",
+		"/C/Users/PeterF/AppData/Roaming/Blender Foundation/Blender/2.76/scripts/addons/__init__.py",
+		"/C/Users/PeterF/AppData/Roaming/Blender Foundation/Blender/2.76/scripts/addons/RLD_Toolkit/rld_master.py",
+		"/C/Users/PeterF/Dropbox/Dev/RLD_Toolkit/tests/TESTING.md",
+		"/C/Python35/2.78/scripts/modules/bpy/__init__.py",
+		"/C/Users/PeterF/Dropbox/Dev/RLD_Toolkit/.pylintrc",
+		"/C/Users/PeterF/Dropbox/Dev/RLD_Toolkit/tests/.pylintrc",
+		"/C/Users/PeterF/Dropbox/Dev/Websites/MIDI_Experiment/package.json",
+		"/C/Users/PeterF/Dropbox/Dev/Websites/MIDI_Experiment/src/visuals/BallsVisual.js",
+		"/C/Users/PeterF/Dropbox/Dev/Websites/MIDI_Experiment/src/index.js",
+		"/C/Users/PeterF/Dropbox/Dev/Websites/MIDI_Experiment/webpack.config.js",
+		"/C/Users/PeterF/Dropbox/Dev/Websites/MIDI_Experiment/node_modules/dat.gui/src/dat/gui/GUI.js",
+		"/C/Users/PeterF/Dropbox/Dev/Websites/MIDI_Experiment/public/dist.js",
+		"/C/Users/PeterF/Dropbox/Dev/Websites/MIDI_Experiment/src/ManagedData.js",
+		"/C/Users/PeterF/Dropbox/Dev/Tombstone/schema.json",
+		"/C/Users/PeterF/Dropbox/Dev/Websites/MIDI_Experiment/node_modules/dat.gui/src/dat/utils/css.js",
+		"/C/Users/PeterF/Documents/Unreal Projects/PolyGone/Intermediate/Build/Win64/UE4Editor/Inc/PolyGone/PolygonPickup.generated.h.conflict",
+		"/C/Users/PeterF/Documents/Unreal Projects/PolyGone/Intermediate/Build/Win64/UE4Editor/Inc/PolyGone/PolygonPickup.generated.h",
+		"/C/Users/PeterF/Dropbox/Dev/Websites/MIDI_Experiment/src/visuals/VisualOptions.js",
+		"/C/Users/PeterF/Documents/Unreal Projects/PolyGone/Intermediate/Build/Win64/UE4Editor/Inc/PolyGone/MyActor.generated.h.conflict",
+		"/C/Users/PeterF/Downloads/post1.rtf",
+		"/C/Users/PeterF/Dropbox/ProgramPrefs/git/gitconfig",
+		"/C/Users/PeterF/Dropbox/Dev/Websites/MIDI_Experiment/src/visuals/NullVisual.js",
+		"/C/Users/PeterF/Dropbox/Dev/Websites/MIDI_Experiment/src/visuals/Visual.js",
+		"/C/Users/PeterF/Dropbox/Dev/Websites/MIDI_Experiment/README.md",
+		"/C/Users/PeterF/Dropbox/Dev/RLD_Toolkit/rld_toolkit/SelectionGraphics.py",
+		"/C/Users/PeterF/Dropbox/Dev/RLD_Toolkit/rld_toolkit/ops/__init__.py",
+		"/C/Users/PeterF/Dropbox/Dev/RLD_Toolkit/rld_toolkit/BaseRLDOperator.py",
+		"/C/Users/PeterF/AppData/Roaming/Sublime Text 3/Packages/User/SublimeLinter.sublime-settings",
+		"/C/Users/PeterF/Downloads/blender-build-2.78c/blender/source/blender/editors/mesh/mesh_ops.c",
+		"/C/Program Files/Blender Foundation/Blender/2.76/scripts/modules/bpy/ops.py",
+		"/C/Users/PeterF/Dropbox/Dev/RLD_Toolkit/rld_primitiveManipulatorChanged.py",
+		"/C/Users/PeterF/Downloads/blender-build-2.78c/blender/CMakeLists.txt",
+		"/C/Users/PeterF/Downloads/blender-build-2.78c/build/mm.bat"
+	],
+	"find":
+	{
+		"height": 45.3333333333
+	},
+	"find_in_files":
+	{
+		"height": 158.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"folders":
+	[
+		{
+			"path": "C:\\Users\\PeterF\\Dropbox\\Dev\\bobskater"
+		}
+	],
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 33.0
+	},
+	"input":
+	{
+		"height": 60.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.SublimeLinter":
+	{
+		"height": 0.0
+	},
+	"output.SublimeLinter Messages":
+	{
+		"height": 162.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "",
+	"replace":
+	{
+		"height": 62.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"rld",
+				"build\\rldBuild.py"
+			],
+			[
+				"requir",
+				"requirements.txt"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 329.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
