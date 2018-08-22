@@ -113,23 +113,30 @@ class FrameTrackingNodeVisitor(ast.NodeVisitor):
         #to the current scope)
         #Handle global/nonlocal (Python3) statement
         if isinstance(node, (ast.Global, ast.Nonlocal)):
-            frame = self._rootFrame.children[0] #For global statement, always use the same stack frame
             #global_stmt ::=  "global" identifier ("," identifier)*
             for strId in node.names:
-                if isinstance(node, ast.Nonlocal):
-                    #Find scope for nonlocal argument, if None then TODO
-                    frame = self._currentFrame.getScopedEntry(strId)
-                    if frame is None:
-                        raise NotImplementedError("TODO: No scope for nonlocal declaration, what do?")
+                #Don't check for parent identifier existence as it might
+                #not be defined yet, e.g:
+                #def a():
+                #    nonlocal b
+                #    b=2
+                #b=1
+                #a()
 
                 #If the currentFrame contains this identifier (they assigned and then used the identifier)
                 #do what python does and warn but leave it as local
                 #This is Python 3.5 behavior so this might need to be changed if ever a problem
-                if self._currentFrame.getScopedEntry(strId) == frame:
+                if self._currentFrame.getScopedEntry(strId) == self._currentFrame:
                     self._logger.warning("Global/nonlocal found when variable already in local scope")
-                else:
+                elif isinstance(node, ast.Nonlocal):
+                    #Simply insert a passthrough so all scoping checks hit the
+                    #parent frame instead
                     self._logger.debug("[+Entry]: " + str(node.__class__.__name__) + " \"" + strId + "\"")
-                    frame.addEntry(FrameEntry(id=strId, source=node))
+                    #use ast.Load() so that it doesn't use this scope for this identifier
+                    self._currentFrame.addEntry(FrameEntry(id=strId, source=node, ctx=ast.Load()))
+                else: #isinstance(node, ast.Global)
+                    #The frame we need to point to is the root frame
+                    self._currentFrame.addEntry(FrameEntry(id=strId, source=node, ctx=ast.Load(), scope=self._rootFrame.children[0]))
         #TODO: Annotations (for everything x:)
         #Handle Name (which handles anything that doesn't use raw strings)
         elif isinstance(node, ast.Name):

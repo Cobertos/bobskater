@@ -78,8 +78,14 @@ class Frame:
         for frame in reversed(self.getStack()):
             if frameEntryId in frame.ids:
                 entry = frame.ids[frameEntryId]
-                if isinstance(entry.ctx, ast.Store):
+                if isinstance(entry.source, (ast.Global)):
+                    #Return the special scopeParent pointing to
+                    #the root
+                    return entry.scopeParent.ids[entry.id]
+                if isinstance(entry.ctx, ast.Store) and \
+                    not isinstance(entry.source, (ast.Global, ast.Nonlocal)):
                     #Only ast.Store will actually define the scope for an ID
+                    #and global and nonlocal nodes need to be pass through as well
                     return entry
 
         #This happens if the identifier was not seen in the given scope stack.
@@ -91,6 +97,8 @@ class Frame:
         """
         Using the nodeStack, finds the frameEntry for frameEntryId
         """
+        #Find top frame mentioned in nodeStack. then traverse
+        #down to find the scoped entry
         return self.getFrameStack(nodeStack)[-1].getScopedEntry(frameEntryId)
 
     def getAllIds(self):
@@ -146,14 +154,16 @@ class FrameEntry:
     * Ctx is ast.Load or ast.Store to catalog if it will push to the stack or not
     * Value is the return from onEnterStackFrame that was stored for this scoped identifier
     * Id is the identifier of this entry
+    * ScopeParent is the actual parent (like for a global)
     """
-    __slots__ = ["source", "parent", "ctx", "value", "id"]
-    def __init__(self, id, source=None, ctx=ast.Store(), value=None):
+    __slots__ = ["source", "parent", "ctx", "value", "id", "scopeParent"]
+    def __init__(self, id, source=None, ctx=ast.Store(), scope=None, value=None):
         self.source = source
         self.ctx = ctx
         self.value = value
         self.id = id
-        self.parent = None #Set in Frame
+        self.scopeParent = scope
+        self.parent = None #The actual frame parent
     def __str__(self):
         return str(self.source.__class__.__name__) + \
             (("(" + str(self.ctx.__class__.__name__) + ")") if self.ctx else "") + \

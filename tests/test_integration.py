@@ -2,8 +2,13 @@
 Integration tests for bobskater obfuscation
 '''
 import unittest
+import logging
 
 from bobskater.obfuscate import obfuscateString
+
+logging.basicConfig(format='%(name)s|%(levelname)s: %(message)s', \
+    datefmt='%I:%M:%S %p', \
+    level=logging.DEBUG)
 
 class TestBobskater(unittest.TestCase):
     '''
@@ -24,8 +29,9 @@ def testOuter(*args, **kwargs):
         """
 
         #act
-        print(obfuscateString(code))
-        exec(obfuscateString(code), globals())
+        obf = obfuscateString(code)
+        print(obf)
+        exec(obf, globals())
 
         #assert
         self.assertEqual(testOuter(2,3,4),9)
@@ -41,8 +47,31 @@ def testOuter(babl=1, mopl=2, roopl=3):
         """
 
         #act
-        print(obfuscateString(code))
-        exec(obfuscateString(code), globals())
+        obf = obfuscateString(code)
+        print(obf)
+        exec(obf, globals())
 
         #assert
         self.assertEqual(testOuter(mopl=4, roopl=10),-6)
+
+    def test_global(self):
+        '''will not mess up on global'''
+        #arrange
+        code = """
+who="wow"
+def testGlobal():
+    global who
+    who=who if who else False
+    return who
+        """
+        #If this fails, who would get obfuscated only inside
+        #of test and it should return False or just raise an
+        #Exception
+
+        #act
+        obf = obfuscateString(code)
+        print(obf)
+        exec(obf, globals())
+
+        #assert
+        self.assertEqual(testGlobal(),"wow")
