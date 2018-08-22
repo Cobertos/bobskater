@@ -240,7 +240,7 @@ class ObfuscationTransformer(ast.NodeTransformer):
             argumentsNode = nodeStack[-1]
             #Slice the number of default nodes from the end
             kwStrs = list(map(lambda n: n.arg, argumentsNode.args[-len(argumentsNode.defaults):]))
-            self._logger.debug("kwarg debug", kwStrs, strId, strId in kwStrs)
+            self._logger.debug("kwarg debug %s %s %s", kwStrs, strId, strId in kwStrs)
             if strId in kwStrs:
                 frameEntry.value = False
                 return False
