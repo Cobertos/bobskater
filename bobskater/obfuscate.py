@@ -19,6 +19,12 @@ import astunparse
 
 from .frameUtils import Frame, FrameEntry, getIdsFromNode, setIdsOnNode
 
+class Struct:
+    '''
+    Provides an object property accessing to a dict
+    '''
+    def __init__(self, inputDict):
+        self.__dict__.update(inputDict)
 
 def iter_fields_patch(node):
     """
@@ -191,11 +197,17 @@ class ObfuscationTransformer(ast.NodeTransformer):
     Parses out things that obfuscate our code, 
     NOTE: Comments won't be in the AST anyway, so no worries
     """
-    def __init__(self, rootFrame, *args, **kwargs):
+    def __init__(self, rootFrame, *args, 
+            removeDocstrings=True,
+            obfuscateNames=True, **kwargs):
         self._logger = logging.getLogger(self.__class__.__name__)
         self._rootFrame = rootFrame
         self._nodeStack = []
         self._debugMsg = None
+        self._opt = Struct({
+            "removeDocstrings" : removeDocstrings,
+            "obfuscateNames" : obfuscateNames
+        })
 
         #TODO: Name should eventually be unique per scope, as we
         #can better obfuscate by using the same names in scopes that
@@ -264,7 +276,8 @@ class ObfuscationTransformer(ast.NodeTransformer):
 
     def generic_visit(self, node):
         #Remove docstrings
-        if (isinstance(node, ast.Expr) and 
+        if (self._opt.removeDocstrings and
+            isinstance(node, ast.Expr) and 
             isinstance(self._nodeStack[-1], 
                 (ast.FunctionDef,ast.ClassDef,ast.Module)) and 
             isinstance(node.value, ast.Str)):
@@ -272,20 +285,21 @@ class ObfuscationTransformer(ast.NodeTransformer):
 
         #Mangle names
         ids = getIdsFromNode(node)
-        if self._logger.isEnabledFor(logging.DEBUG):
-            oldIds = ids[:]
-        for idx, strId in enumerate(ids):
-            mangleTo = self.getMangledName(self._nodeStack, strId)
-            if not mangleTo:
-                continue
-            ids[idx] = mangleTo
-        setIdsOnNode(node, ids)
-        if ids and self._logger.isEnabledFor(logging.DEBUG):
-            self._logger.debug(node.__class__.__name__ + 
-                ": " + (str(oldIds) if oldIds else None) + 
-                " => " + (str(ids) if ids else None) + " [" +
-                self._debugMsg + "]")
-            self._debugMsg = ""
+        if self._opt.obfuscateNames:
+            if self._logger.isEnabledFor(logging.DEBUG):
+                oldIds = ids[:]
+            for idx, strId in enumerate(ids):
+                mangleTo = self.getMangledName(self._nodeStack, strId)
+                if not mangleTo:
+                    continue
+                ids[idx] = mangleTo
+            setIdsOnNode(node, ids)
+            if ids and self._logger.isEnabledFor(logging.DEBUG):
+                self._logger.debug(node.__class__.__name__ + 
+                    ": " + (str(oldIds) if oldIds else None) + 
+                    " => " + (str(ids) if ids else None) + " [" +
+                    self._debugMsg + "]")
+                self._debugMsg = ""
 
         #Go in to deeper nodes
         self._nodeStack.append(node)
@@ -294,7 +308,7 @@ class ObfuscationTransformer(ast.NodeTransformer):
         
         return node
 
-def obfuscateString(s):
+def obfuscateString(s, *args, **kwargs):
     #Parse string for AST
     sAst = ast.parse(s)
     #Walk the AST once total to get all the scope information
@@ -303,15 +317,15 @@ def obfuscateString(s):
     logging.getLogger(__name__).debug(ftnv.getRootFrame())
     #Walk the AST a second time to obfuscate identifiers with
     #queriable scope info
-    sAst = ObfuscationTransformer(ftnv.getRootFrame()).visit(sAst)
+    sAst = ObfuscationTransformer(ftnv.getRootFrame(), *args, **kwargs).visit(sAst)
     #Unparse AST into source code
     return astunparse.unparse(sAst)
 
-def obfuscateFile(fp):
+def obfuscateFile(fp, *args, **kwargs):
     f = open(fp, "r")
     s = f.read()
     f.close()
-    s = obfuscateString(s)
+    s = obfuscateString(s, *args, **kwargs)
     f = open(fp, "w")
     f.write(s)
     f.close()

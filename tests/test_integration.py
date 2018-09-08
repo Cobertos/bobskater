@@ -3,6 +3,7 @@ Integration tests for bobskater obfuscation
 '''
 import unittest
 import logging
+import re
 
 from bobskater.obfuscate import obfuscateString
 
@@ -75,3 +76,43 @@ def testGlobal():
 
         #assert
         self.assertEqual(testGlobal(),"wow")
+
+    def test_docstrings(self):
+        '''will remove docstrings'''
+        #arrange
+        code = """
+def testDocString():
+    '''
+    Gottem
+    '''
+        """
+
+        #act
+        obf = obfuscateString(code)
+        print(obf)
+
+        #assert
+        exec(obf, globals()) #This should not fail! It should be valid python code
+        self.assertFalse(re.search(r"gottem", obf, re.I))
+
+    def test_everythingDisabled(self):
+        '''all settings off it wont remove docstring of var names'''
+        #arrange
+        code = """
+def testDocString2():
+    '''
+    Gottem
+    '''
+    asdf = 2
+        """
+
+        #act
+        obf = obfuscateString(code, 
+            removeDocstrings=False,
+            obfuscateNames=False)
+
+        #assert
+        print(obf)
+        self.assertTrue(re.search(r"gottem", obf, re.I))
+        self.assertTrue(re.search(r"asdf", obf, re.I))
+        self.assertTrue(re.search(r"testDocString2", obf, re.I))
