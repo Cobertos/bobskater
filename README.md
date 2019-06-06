@@ -12,7 +12,6 @@ An AST based Python obfuscator that robustly mangles names and other obfuscation
 ### Current limitations:
 * DOES NOT SUPPORT: Annotations, evals, templated strings, imports of the form import xxx.yyy
 * Very little configuration currently and instead takes a cautious approach in determining what identifiers to mangle. Globals, kwargs, class namespace identifiers, and others are not obfuscated but type of obfuscations should be use selected in the future.
-* It is only tested with Python v3.5 and might not work with other AST versions
 * Scoping for comprehensions are kind of hacky (and basically follows Python 2 comprehension scope leaking methodology)
 
 ### Installation
