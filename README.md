@@ -1,3 +1,9 @@
+<p align="center">
+    <a href="https://travis-ci.org/Cobertos/bobskater.svg?branch=master" target="_blank"><img alt="build status" src="https://travis-ci.org/Cobertos/unitypackage_extractor.svg?branch=master"></a>
+    <a href="https://twitter.com/cobertos" target="_blank"><img alt="twitter" src="https://img.shields.io/badge/twitter-%40cobertos-0084b4.svg"></a>
+    <a href="https://cobertos.com" target="_blank"><img alt="twitter" src="https://img.shields.io/badge/website-cobertos.com-888888.svg"></a>
+</p>
+
 # bobskater
 
 An AST based Python obfuscator that robustly mangles names and other obfuscations of Python code
